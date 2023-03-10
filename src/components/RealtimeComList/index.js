@@ -1,10 +1,10 @@
-import { DRG_COM_LIST } from "../../utils/contant";
+import { DRAG_COM_LIST } from "../../utils/contant";
 import styles from "./index.less";
 
 const RealtimeComList = (props) => {
   return (
     <div className={styles['real-time-component-list']}>
-      {DRG_COM_LIST.map((item, index) => {
+      {DRAG_COM_LIST.map((item, index) => {
         return (
           <div key={index} className={`flex_start_center ${styles["list"]}`}>
             <i className={`iconfont ${item.icon}`}></i>

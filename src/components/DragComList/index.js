@@ -1,11 +1,11 @@
-import { DRG_COM_LIST } from "../../utils/contant";
+import { DRAG_COM_LIST } from "../../utils/contant";
 import styles from "./index.less";
 
 const DragComList = (props) => {
   const handleDragStart = () => {};
   return (
     <div className={styles["drag-com-list"]}>
-      {DRG_COM_LIST.map((item, index) => (
+      {DRAG_COM_LIST.map((item, index) => (
         <div
           key={index}
           className={styles["list"]}

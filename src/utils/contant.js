@@ -1,5 +1,5 @@
 // 拖拽组件类型
-export const DRG_COM_TYPE = {
+export const DRAG_COM_TYPE = {
   // 文字块
   TEXT: 1,
   // 按钮
@@ -21,10 +21,10 @@ export const DRG_COM_TYPE = {
 };
 
 // 可供拖拽的组件
-export const DRG_COM_LIST = [
+export const DRAG_COM_LIST = [
   // 文字块
   {
-    type: DRG_COM_TYPE.TEXT,
+    type: DRAG_COM_TYPE.TEXT,
     icon: "icon-drag-text",
     style: {
       width: 130,
@@ -33,7 +33,7 @@ export const DRG_COM_LIST = [
   },
   // 按钮
   {
-    type: DRG_COM_TYPE.BUTTON,
+    type: DRAG_COM_TYPE.BUTTON,
     icon: "icon-drag-button",
     style: {
       width: 130,
@@ -42,7 +42,7 @@ export const DRG_COM_LIST = [
   },
   // 图片
   {
-    type: DRG_COM_TYPE.IMG,
+    type: DRAG_COM_TYPE.IMG,
     icon: "icon-drag-img",
     style: {
       width: 130,
@@ -51,7 +51,7 @@ export const DRG_COM_LIST = [
   },
   // 表格
   {
-    type: DRG_COM_TYPE.TABLE,
+    type: DRAG_COM_TYPE.TABLE,
     icon: "icon-drag-table",
     style: {
       width: 130,
@@ -60,7 +60,7 @@ export const DRG_COM_LIST = [
   },
   // 线
   {
-    type: DRG_COM_TYPE.LINE,
+    type: DRAG_COM_TYPE.LINE,
     icon: "icon-drag-line",
     style: {
       width: 130,
@@ -69,7 +69,7 @@ export const DRG_COM_LIST = [
   },
   // 三角形
   {
-    type: DRG_COM_TYPE.TRI,
+    type: DRAG_COM_TYPE.TRI,
     icon: "icon-drag-triangle",
     style: {
       width: 130,
@@ -78,7 +78,7 @@ export const DRG_COM_LIST = [
   },
   // 矩形
   {
-    type: DRG_COM_TYPE.REC,
+    type: DRAG_COM_TYPE.REC,
     icon: "icon-drag-rectangle",
     style: {
       width: 130,
@@ -87,7 +87,7 @@ export const DRG_COM_LIST = [
   },
   // 五角星
   {
-    type: DRG_COM_TYPE.STAR,
+    type: DRAG_COM_TYPE.STAR,
     icon: "icon-drag-star",
     style: {
       width: 130,
@@ -96,7 +96,7 @@ export const DRG_COM_LIST = [
   },
   // 圆形
   {
-    type: DRG_COM_TYPE.CIRCLE,
+    type: DRAG_COM_TYPE.CIRCLE,
     icon: "icon-drag-circle",
     style: {
       width: 130,
