@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3944276 */
+  src: url('iconfont.woff2?t=1678433081126') format('woff2'),
+       url('iconfont.woff?t=1678433081126') format('woff'),
+       url('iconfont.ttf?t=1678433081126') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-drag-chart:before {
+  content: "\e667";
+}
+
+.icon-drag-img:before {
+  content: "\e67c";
+}
+
+.icon-drag-rectangle:before {
+  content: "\ea98";
+}
+
+.icon-drag-delete:before {
+  content: "\e665";
+}
+
+.icon-drag-down:before {
+  content: "\e66b";
+}
+
+.icon-drag-up:before {
+  content: "\e66c";
+}
+
+.icon-drag-star:before {
+  content: "\e613";
+}
+
+.icon-drag-line:before {
+  content: "\e7fd";
+}
+
+.icon-drag-button:before {
+  content: "\e628";
+}
+
+.icon-drag-circle:before {
+  content: "\e615";
+}
+
+.icon-drag-triangle:before {
+  content: "\e8a9";
+}
+
+.icon-drag-text:before {
+  content: "\e680";
+}
+
+.icon-drag-table:before {
+  content: "\e663";
+}
+

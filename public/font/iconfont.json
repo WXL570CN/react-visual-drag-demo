@@ -1,0 +1,100 @@
+{
+  "id": "3944276",
+  "name": "drag-icon",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-drag-",
+  "description": "拖拽项目图标",
+  "glyphs": [
+    {
+      "icon_id": "15838441",
+      "name": "chart-bar",
+      "font_class": "chart",
+      "unicode": "e667",
+      "unicode_decimal": 58983
+    },
+    {
+      "icon_id": "15838521",
+      "name": "picture",
+      "font_class": "img",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "7594409",
+      "name": "24gl-rectangle",
+      "font_class": "rectangle",
+      "unicode": "ea98",
+      "unicode_decimal": 60056
+    },
+    {
+      "icon_id": "15838430",
+      "name": "ashbin",
+      "font_class": "delete",
+      "unicode": "e665",
+      "unicode_decimal": 58981
+    },
+    {
+      "icon_id": "15838455",
+      "name": "direction-down",
+      "font_class": "down",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "15838461",
+      "name": "direction-up",
+      "font_class": "up",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "4682509",
+      "name": "star",
+      "font_class": "star",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "4767098",
+      "name": "line",
+      "font_class": "line",
+      "unicode": "e7fd",
+      "unicode_decimal": 59389
+    },
+    {
+      "icon_id": "6801432",
+      "name": "Stop-Button",
+      "font_class": "button",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "10147101",
+      "name": "circle",
+      "font_class": "circle",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "12310436",
+      "name": "triangle",
+      "font_class": "triangle",
+      "unicode": "e8a9",
+      "unicode_decimal": 59561
+    },
+    {
+      "icon_id": "15838539",
+      "name": "text",
+      "font_class": "text",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "28661076",
+      "name": "Table",
+      "font_class": "table",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    }
+  ]
+}

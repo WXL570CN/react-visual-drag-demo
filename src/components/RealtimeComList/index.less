@@ -1,0 +1,39 @@
+.real-time-component-list {
+  height: 35%;
+  .list {
+    height: 30px;
+    cursor: grab;
+    text-align: center;
+    color: #333;
+    font-size: 12px;
+    padding: 0 10px;
+    user-select: none;
+    &:active {
+      cursor: grabbing;
+    }
+    &:hover {
+      background-color: rgba(200, 200, 200, 0.2);
+      .icon-container {
+        display: block;
+        i:hover {
+          color: #409eff;
+        }
+      }
+    }
+    .name {
+      margin-left: 5px;
+      flex: 1;
+      text-align: left;
+    }
+    .icon-container {
+      display: none;
+      i {
+        cursor: pointer;
+      }
+    }
+  }
+  .actived {
+    background: #ecf5ff;
+    color: #409eff;
+  }
+}
