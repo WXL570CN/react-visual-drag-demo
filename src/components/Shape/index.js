@@ -1,13 +1,13 @@
 import styles from "./index.less";
 import { useModel } from "umi";
-import {
+import calculateComponentPositonAndSize, {
   calculateCenter,
   getDirectionPointStyle,
 } from "../../utils/calculateComponentPositonAndSize";
 import { CANVAS_STYLE, DIRECTION_POINTS } from "../../utils/contant";
 
 const Shape = (props) => {
-  const { style, element, children } = props;
+  const { style, element, children, editorClient } = props;
   const {
     curComponent,
     setCurComonent,
@@ -54,7 +54,37 @@ const Shape = (props) => {
   };
 
   // 拖动缩放图纸的点
-  const handleMouseDownOnPoint = (point, e) => {};
+  const handleMouseDownOnPoint = (point, e) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const _style = { ...style };
+
+    // 获取画布位移信息
+    const move = (moveEvent) => {
+      // 实时鼠标位置
+      const curPositon = {
+        x: moveEvent.clientX - Math.round(editorClient.left),
+        y: moveEvent.clientY - Math.round(editorClient.top),
+      };
+
+      calculateComponentPositonAndSize(
+        point,
+        _style,
+        curPositon,
+        CANVAS_STYLE
+      );
+      updateCurComponent(_style)
+    };
+
+    const up = () => {
+      document.removeEventListener('mousemove', move);
+      document.removeEventListener('mouseup', up);
+    };
+
+    document.addEventListener('mousemove', move);
+    document.addEventListener('mouseup', up);
+  };
 
   const active = curComponent?.id === element.id;
   return (
@@ -75,7 +105,6 @@ const Shape = (props) => {
           />
         ))}
       {children}
-      {/* <i className={styles['delete']} onClick={deleteCurComponent} /> */}
     </div>
   );
 };

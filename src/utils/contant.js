@@ -2,8 +2,8 @@ import Text from "../components/DragComList/Text";
 
  // 画布样式
  export const CANVAS_STYLE = {
-  width: 1120,
-  height: 545,
+  width: 1008,
+  height: 648,
   color: '#000',
   background: '#fff',
 }

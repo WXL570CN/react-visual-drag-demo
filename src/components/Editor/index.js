@@ -8,8 +8,10 @@ const Editor = React.forwardRef((props, ref) => {
   const { curComponent, realtimeList } = useModel("home");
   const editorRef = useRef(null);
 
+  const getEditorClient = () => editorRef.current.getBoundingClientRect()
+
   useImperativeHandle(ref, () => ({
-    editorClient: () => editorRef.current.getBoundingClientRect(),
+    editorClient: getEditorClient(),
   }));
 
   const handleMouseDown = (e) => {
@@ -30,7 +32,7 @@ const Editor = React.forwardRef((props, ref) => {
       {/* 页面组件列表展示 */}
       {realtimeList.map((item, index) => {
         return (
-          <Shape key={item.id} style={item.style} element={item}>
+          <Shape key={item.id} style={item.style} element={item} editorClient={getEditorClient()}>
             {item.component(item)}
           </Shape>
         );

@@ -20,7 +20,7 @@ export default function HomePage() {
     e.preventDefault();
     e.stopPropagation();
     const comType = JSON.parse(e.dataTransfer.getData("comType"));
-    const rectInfo = editorRef.current.editorClient();
+    const rectInfo = editorRef.current.editorClient;
     if (comType) {
       const component =
         deepCopy(DRAG_COM_LIST.find((item) => item.type === comType)) || {};
