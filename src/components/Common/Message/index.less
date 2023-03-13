@@ -1,0 +1,27 @@
+.message {
+  position: fixed;
+  top: 85px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1000;
+
+  &-content {
+    background: #fff;
+    padding: 10px 6px;
+    border-radius: 2px;
+    font-size: 14px;
+    font-family: Avenir-Medium, Avenir;
+    font-weight: 500;
+    line-height: 22px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014,
+      0 9px 28px 8px #0000000d;
+    pointer-events: all;
+    margin-top: 10px;
+    i {
+      margin-right: 8px;
+      font-size: 20px;
+    }
+  }
+}

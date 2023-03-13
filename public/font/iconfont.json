@@ -6,6 +6,27 @@
   "description": "拖拽项目图标",
   "glyphs": [
     {
+      "icon_id": "15838473",
+      "name": "error",
+      "font_class": "error",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "15838532",
+      "name": "success",
+      "font_class": "success",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    },
+    {
+      "icon_id": "15838551",
+      "name": "warning",
+      "font_class": "warn",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
       "icon_id": "15838441",
       "name": "chart-bar",
       "font_class": "chart",

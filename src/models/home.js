@@ -1,5 +1,6 @@
 // 海图图层标注
 import { useState } from "react";
+import message from "../components/Common/Message";
 import { swap } from "../utils/utils";
 
 export default () => {
@@ -12,15 +13,15 @@ export default () => {
 
   const moveUpComponent = (index) => {
     if (index === 0) {
-      console.log('到顶了！')
-      return
+      message.warn("到顶了！");
+      return;
     }
     setRealtimeList((_realtimeList) => swap(_realtimeList, index, index - 1));
   };
   const moveDownComponent = (index) => {
     if (index === realtimeList.length - 1) {
-      console.log('到底了！')
-      return
+      message.warn("到底了！");
+      return;
     }
     setRealtimeList((_realtimeList) => swap(_realtimeList, index, index + 1));
   };
