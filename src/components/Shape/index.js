@@ -41,7 +41,7 @@ const Shape = (props) => {
       };
       calculateCenter(_style, startStyle, offset, CANVAS_STYLE);
       // 修改当前组件样式
-      updateCurComponent(_style);
+      updateCurComponent(_style, element);
     };
 
     const up = () => {
@@ -74,7 +74,7 @@ const Shape = (props) => {
         curPositon,
         CANVAS_STYLE
       );
-      updateCurComponent(_style)
+      updateCurComponent(_style, element)
     };
 
     const up = () => {
@@ -86,6 +86,7 @@ const Shape = (props) => {
     document.addEventListener('mouseup', up);
   };
 
+  console.log('『curComponent』', curComponent)
   const active = curComponent?.id === element.id;
   return (
     <div

@@ -1,5 +1,8 @@
-const Tri = (props) => {
-  return <div>1</div>;
+import styles from './index.less';
+
+const Button = (props) => {
+  const { propValue } = props;
+  return <button className={styles["button"]}>{propValue}</button>;
 };
 
-export default Tri;
+export default Button;

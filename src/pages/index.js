@@ -9,7 +9,7 @@ import { DRAG_COM_LIST } from "../utils/contant";
 import generateID, { deepCopy } from "../utils/utils";
 
 export default function HomePage() {
-  const { addRealtimeList } = useModel("home");
+  const { addRealtimeList, isClickComponent, crearCurComponent, setIsClickComponent } = useModel("home");
   const editorRef = useRef(null);
   // 处理鼠标拖拽移入
   const handleDragOver = (e) => {
@@ -31,9 +31,16 @@ export default function HomePage() {
     }
   };
   // 处理鼠标按下
-  const handleMouseDown = () => {};
+  const handleMouseDown = (e) => {
+    e.stopPropagation();
+    setIsClickComponent(false)
+  };
   // 处理鼠标抬起
-  const handleMouseUp = () => {};
+  const handleMouseUp = () => {
+    if (!isClickComponent) {
+      crearCurComponent()
+    }
+  };
   return (
     <div className={styles["home"]}>
       <Toolbar />

@@ -33,9 +33,9 @@ export default () => {
     );
   };
 
-  const updateCurComponent = (payload) => {
+  const updateCurComponent = (payload, element) => {
     const { top, left, width, height, rotate } = payload;
-    const _curComponent = deepCopy(curComponent);
+    const _curComponent = deepCopy(element);
     if (top) _curComponent.style.top = Math.round(top);
     if (left) _curComponent.style.left = Math.round(left);
     if (width) _curComponent.style.width = Math.round(width);
@@ -50,6 +50,10 @@ export default () => {
     setRealtimeList(_realtimeList);
   };
 
+  const crearCurComponent = () => {
+    setCurComonent(null)
+  }
+
   return {
     curComponent,
     realtimeList,
@@ -60,6 +64,7 @@ export default () => {
     moveUpComponent,
     moveDownComponent,
     deleteComponent,
-    updateCurComponent
+    updateCurComponent,
+    crearCurComponent,
   };
 };

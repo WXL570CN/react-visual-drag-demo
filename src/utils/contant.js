@@ -1,26 +1,28 @@
+import Button from "../components/DragComList/Button";
+import Picture from "../components/DragComList/Picture";
 import Text from "../components/DragComList/Text";
 
- // 画布样式
- export const CANVAS_STYLE = {
+// 画布样式
+export const CANVAS_STYLE = {
   width: 1008,
   height: 648,
-  color: '#000',
-  background: '#fff',
-}
+  color: "#000",
+  background: "#fff",
+};
 
 // 代表八个方向的点
-export const DIRECTION_POINTS = ['lt', 't', 'rt', 'r', 'rb', 'b', 'lb', 'l']; // 八个方向
+export const DIRECTION_POINTS = ["lt", "t", "rt", "r", "rb", "b", "lb", "l"]; // 八个方向
 
 // 鼠标样式
 export const CURSORS = {
-  lt: 'nw-resize',
-  t: 'n-resize',
-  rt: 'ne-resize',
-  r: 'e-resize',
-  rb: 'se-resize',
-  b: 's-resize',
-  lb: 'sw-resize',
-  l: 'w-resize',
+  lt: "nw-resize",
+  t: "n-resize",
+  rt: "ne-resize",
+  r: "e-resize",
+  rb: "se-resize",
+  b: "s-resize",
+  lb: "sw-resize",
+  l: "w-resize",
 };
 
 // 拖拽组件类型
@@ -54,6 +56,7 @@ export const DRAG_COM_LIST = [
     type: DRAG_COM_TYPE.TEXT,
     icon: "icon-drag-text",
     label: "文字",
+    propValue: "双击编辑文字",
     style: {
       width: 200,
       height: 28,
@@ -67,6 +70,7 @@ export const DRAG_COM_LIST = [
     type: DRAG_COM_TYPE.BUTTON,
     icon: "icon-drag-button",
     label: "按钮",
+    propValue: "按钮",
     style: {
       width: 100,
       height: 34,
@@ -81,17 +85,20 @@ export const DRAG_COM_LIST = [
       color: "",
       backgroundColor: "",
     },
+    component: (props) => <Button {...props} />,
   },
   // 图片
   {
     type: DRAG_COM_TYPE.IMG,
     icon: "icon-drag-img",
     label: "图片",
+    propValue: "https://picsum.photos/300/200",
     style: {
       width: 300,
       height: 200,
       borderRadius: "",
     },
+    component: (props) => <Picture {...props} />,
   },
   // 表格
   {
