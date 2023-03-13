@@ -5,18 +5,35 @@ import Toolbar from "../components/ToolBar";
 import styles from "./index.less";
 import { useModel } from "umi";
 import { useRef } from "react";
+import { DRAG_COM_LIST } from "../utils/contant";
+import generateID, { deepCopy } from "../utils/utils";
 
 export default function HomePage() {
   const { addRealtimeList } = useModel("home");
   const editorRef = useRef(null);
+  // 处理鼠标拖拽移入
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+  // 处理鼠标拖拽松开
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const comType = JSON.parse(e.dataTransfer.getData("comType"));
+    const rectInfo = editorRef.current.editorClient;
+    if (comType) {
+      const component =
+        deepCopy(DRAG_COM_LIST.find((item) => item.type === comType)) || {};
+      component.id = generateID();
+      component.style.top = e.clientY - rectInfo.y;
+      component.style.left = e.clientX - rectInfo.x;
+      addRealtimeList(component);
+    }
+  };
   // 处理鼠标按下
   const handleMouseDown = () => {};
   // 处理鼠标抬起
   const handleMouseUp = () => {};
-  // 处理鼠标拖拽移入
-  const handleDragOver = () => {};
-  // 处理鼠标拖拽松开
-  const handleDrop = (e) => {};
   return (
     <div className={styles["home"]}>
       <Toolbar />
@@ -30,8 +47,8 @@ export default function HomePage() {
         <section className={styles["center"]}>
           <div
             className={styles["content"]}
-            onDrop={handleDrop}
             onDragOver={handleDragOver}
+            onDrop={handleDrop}
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
           >

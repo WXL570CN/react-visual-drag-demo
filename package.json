@@ -9,6 +9,7 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "nanoid": "^4.0.1",
     "umi": "^4.0.57"
   },
   "devDependencies": {
