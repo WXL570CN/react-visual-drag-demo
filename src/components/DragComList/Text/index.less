@@ -1,0 +1,22 @@
+.text-box {
+  height: 24px;
+  line-height: 24px;
+  box-shadow: 0px 0px 6px 0px rgba(95, 109, 128, 0.16);
+  background: #ffffff;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0 6px;
+  .name,
+  .value {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .name {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+  }
+}

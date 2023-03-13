@@ -1,3 +1,28 @@
+import Text from "../components/DragComList/Text";
+
+ // 画布样式
+ export const CANVAS_STYLE = {
+  width: 1120,
+  height: 545,
+  color: '#000',
+  background: '#fff',
+}
+
+// 代表八个方向的点
+export const DIRECTION_POINTS = ['lt', 't', 'rt', 'r', 'rb', 'b', 'lb', 'l']; // 八个方向
+
+// 鼠标样式
+export const CURSORS = {
+  lt: 'nw-resize',
+  t: 'n-resize',
+  rt: 'ne-resize',
+  r: 'e-resize',
+  rb: 'se-resize',
+  b: 's-resize',
+  lb: 'sw-resize',
+  l: 'w-resize',
+};
+
 // 拖拽组件类型
 export const DRAG_COM_TYPE = {
   // 文字块
@@ -32,13 +57,10 @@ export const DRAG_COM_LIST = [
     style: {
       width: 200,
       height: 28,
-      fontSize: "",
       fontWeight: 400,
-      lineHeight: "",
       letterSpacing: 0,
-      textAlign: "",
-      color: "",
     },
+    component: (props) => <Text {...props} />,
   },
   // 按钮
   {

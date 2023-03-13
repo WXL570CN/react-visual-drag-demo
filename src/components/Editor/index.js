@@ -1,11 +1,13 @@
 import React, { useImperativeHandle, useRef } from "react";
-import Grid from "../Grid";
-import styles from "./index.less";
 import { useModel } from "umi";
+import Grid from "../Grid";
+import Shape from "../Shape";
+import styles from "./index.less";
 
 const Editor = React.forwardRef((props, ref) => {
   const { curComponent, realtimeList } = useModel("home");
   const editorRef = useRef(null);
+
   useImperativeHandle(ref, () => ({
     editorClient: () => editorRef.current.getBoundingClientRect(),
   }));
@@ -27,7 +29,11 @@ const Editor = React.forwardRef((props, ref) => {
       <Grid />
       {/* 页面组件列表展示 */}
       {realtimeList.map((item, index) => {
-        return <div key={item.id}></div>;
+        return (
+          <Shape key={item.id} style={item.style} element={item}>
+            {item.component(item)}
+          </Shape>
+        );
       })}
     </div>
   );
