@@ -1,11 +1,13 @@
 import React, { useImperativeHandle, useRef } from "react";
-import { useModel } from "umi";
+import { useModel, useDispatch, useSelector } from "umi";
 import Grid from "../Grid";
 import Shape from "../Shape";
 import styles from "./index.less";
 
 const Editor = React.forwardRef((props, ref) => {
-  const { curComponent, realtimeList } = useModel("home");
+  // const { curComponent, realtimeList } = useModel("home");
+  const dispatch = useDispatch(); // 获取dispatch
+  const { curComponent, realtimeList } = useSelector((s) => s.drag); // 获取所有model的状态
   const editorRef = useRef(null);
 
   const getEditorClient = () => editorRef.current.getBoundingClientRect()

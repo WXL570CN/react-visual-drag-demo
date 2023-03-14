@@ -1,5 +1,5 @@
 import styles from "./index.less";
-import { useModel } from "umi";
+import { useModel, useDispatch, useSelector } from "umi";
 import calculateComponentPositonAndSize, {
   calculateCenter,
   getDirectionPointStyle,
@@ -8,19 +8,29 @@ import { CANVAS_STYLE, DIRECTION_POINTS } from "../../utils/contant";
 
 const Shape = (props) => {
   const { style, element, children, editorClient } = props;
-  const {
-    curComponent,
-    setCurComonent,
-    setIsClickComponent,
-    updateCurComponent,
-  } = useModel("home");
+  // const {
+  //   curComponent,
+  //   setCurComonent,
+  //   setIsClickComponent,
+  //   updateCurComponent,
+  // } = useModel("home");
+  const dispatch = useDispatch(); // 获取dispatch
+  const { curComponent, realtimeList } = useSelector((s) => s.drag); // 获取所有model的状态
 
   // 鼠标移动
   const handleMouseDownOnShape = (e) => {
-    setIsClickComponent(true);
+    // setIsClickComponent(true);
+    dispatch({
+      type: 'drag/setIsClickComponent',
+      payload: true
+    })
     e.stopPropagation();
     // 存储当前编辑的图纸
-    setCurComonent(element);
+    // setCurComonent(element);
+    dispatch({
+      type: 'drag/setCurComonent',
+      payload: element
+    })
 
     const _style = { ...style };
     // 鼠标按下时的位置
@@ -41,7 +51,12 @@ const Shape = (props) => {
       };
       calculateCenter(_style, startStyle, offset, CANVAS_STYLE);
       // 修改当前组件样式
-      updateCurComponent(_style, element);
+      // updateCurComponent(_style, element);
+      dispatch({
+        type: 'drag/updateCurComponent',
+        payload: _style,
+        element
+      })
     };
 
     const up = () => {
@@ -74,7 +89,12 @@ const Shape = (props) => {
         curPositon,
         CANVAS_STYLE
       );
-      updateCurComponent(_style, element)
+      // updateCurComponent(_style, element)
+      dispatch({
+        type: 'drag/updateCurComponent',
+        payload: _style,
+        element
+      })
     };
 
     const up = () => {
@@ -86,7 +106,6 @@ const Shape = (props) => {
     document.addEventListener('mouseup', up);
   };
 
-  console.log('『curComponent』', curComponent)
   const active = curComponent?.id === element.id;
   return (
     <div
