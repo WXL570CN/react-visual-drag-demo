@@ -50,21 +50,17 @@ export default () => {
     setRealtimeList(_realtimeList);
   };
 
-  const crearCurComponent = () => {
-    setCurComonent(null)
-  }
-
   return {
     curComponent,
     realtimeList,
     isClickComponent,
     setCurComonent,
+    setRealtimeList,
     setIsClickComponent,
     addRealtimeList,
     moveUpComponent,
     moveDownComponent,
     deleteComponent,
     updateCurComponent,
-    crearCurComponent,
   };
 };

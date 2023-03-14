@@ -86,7 +86,6 @@ const Shape = (props) => {
     document.addEventListener('mouseup', up);
   };
 
-  console.log('『curComponent』', curComponent)
   const active = curComponent?.id === element.id;
   return (
     <div

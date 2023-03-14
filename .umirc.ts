@@ -10,5 +10,5 @@ export default defineConfig({
     '@umijs/plugins/dist/model',
   ],
   initialState: {},
-  model: {}
+  model: {},
 });
