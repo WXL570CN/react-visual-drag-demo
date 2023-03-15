@@ -1,15 +1,22 @@
+import { useRef, useState } from "react";
+import { useModel } from "umi";
 import DragComList from "../components/DragComList";
 import Editor from "../components/Editor";
+import Preview from "../components/Preview";
 import RealtimeComList from "../components/RealtimeComList";
 import Toolbar from "../components/ToolBar";
-import styles from "./index.less";
-import { useModel } from "umi";
-import { useRef } from "react";
 import { DRAG_COM_LIST } from "../utils/contant";
 import generateID, { deepCopy } from "../utils/utils";
+import styles from "./index.less";
 
 export default function HomePage() {
-  const { addRealtimeList, isClickComponent, setCurComonent, setIsClickComponent } = useModel("home");
+  const {
+    addRealtimeList,
+    isClickComponent,
+    setCurComonent,
+    setIsClickComponent,
+  } = useModel("home");
+  const [isPreview, setIsPreview] = useState(false); // 预览
   const editorRef = useRef(null);
   // 处理鼠标拖拽移入
   const handleDragOver = (e) => {
@@ -33,17 +40,21 @@ export default function HomePage() {
   // 处理鼠标按下
   const handleMouseDown = (e) => {
     e.stopPropagation();
-    setIsClickComponent(false)
+    setIsClickComponent(false);
   };
   // 处理鼠标抬起
   const handleMouseUp = () => {
     if (!isClickComponent) {
-      setCurComonent(null)
+      setCurComonent(null);
     }
   };
   return (
     <div className={styles["home"]}>
-      <Toolbar />
+      <Toolbar
+        onPreview={() => {
+          setIsPreview(true);
+        }}
+      />
       <main className="flex_start_center">
         {/* 左侧组件列表 */}
         <section className={styles["left"]}>
@@ -65,6 +76,14 @@ export default function HomePage() {
         {/* 右侧属性列表 */}
         <section className={styles["right"]}></section>
       </main>
+      {isPreview && (
+        <Preview
+          visible={isPreview}
+          onCancel={() => {
+            setIsPreview(false);
+          }}
+        />
+      )}
     </div>
   );
 }

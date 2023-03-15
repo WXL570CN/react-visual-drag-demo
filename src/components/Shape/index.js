@@ -7,7 +7,7 @@ import calculateComponentPositonAndSize, {
 import { CANVAS_STYLE, DIRECTION_POINTS } from "../../utils/contant";
 
 const Shape = (props) => {
-  const { style, element, children, editorClient } = props;
+  const { style, element, children, editorClient, isPreview } = props;
   const {
     curComponent,
     setCurComonent,
@@ -86,7 +86,7 @@ const Shape = (props) => {
     document.addEventListener('mouseup', up);
   };
 
-  const active = curComponent?.id === element.id;
+  const active = !isPreview && curComponent?.id === element.id;
   return (
     <div
       className={`${styles["shape"]} ${active ? styles["active"] : ""}`}

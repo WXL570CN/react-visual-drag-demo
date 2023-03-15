@@ -1,12 +1,19 @@
 // 海图图层标注
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import message from "../components/Common/Message";
-import { deepCopy, swap } from "../utils/utils";
+import storage from "../utils/storage";
+import { deepCopy, isEmpty, swap } from "../utils/utils";
 
 export default () => {
   const [curComponent, setCurComonent] = useState(null); // 当前拖拽的组件
   const [realtimeList, setRealtimeList] = useState([]); // 当前被拖拽的组件
   const [isClickComponent, setIsClickComponent] = useState(false); // 鼠标在画布上的状态
+
+  useEffect(() => {
+    const dragData = storage.get('drag_data')
+    if(isEmpty(dragData)) return
+    setRealtimeList(dragData)
+  }, [])
 
   const addRealtimeList = (dragItem) => {
     setRealtimeList((_realtimeList) => [..._realtimeList, dragItem]);
