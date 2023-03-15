@@ -1,6 +1,6 @@
 // 海图图层标注
+import { message } from "antd";
 import { useEffect, useState } from "react";
-import message from "../components/Common/Message";
 import storage from "../utils/storage";
 import { deepCopy, isEmpty, swap } from "../utils/utils";
 
@@ -10,10 +10,10 @@ export default () => {
   const [isClickComponent, setIsClickComponent] = useState(false); // 鼠标在画布上的状态
 
   useEffect(() => {
-    const dragData = storage.get('drag_data')
-    if(isEmpty(dragData)) return
-    setRealtimeList(dragData)
-  }, [])
+    const dragData = storage.get("drag_data");
+    if (isEmpty(dragData)) return;
+    setRealtimeList(dragData);
+  }, []);
 
   const addRealtimeList = (dragItem) => {
     setRealtimeList((_realtimeList) => [..._realtimeList, dragItem]);

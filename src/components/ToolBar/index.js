@@ -1,7 +1,6 @@
+import { Button, Input, message } from "antd";
 import { useModel } from "umi";
 import storage from "../../utils/storage";
-import Button from "../Common/Button";
-import Input from "../Common/Input";
 import styles from "./index.less";
 
 const Toolbar = (props) => {
@@ -12,6 +11,7 @@ const Toolbar = (props) => {
   const redo = () => {};
   const save = () => {
     storage.set({ name: "drag_data", value: realtimeList });
+    message.success("保存成功！");
   };
   const clearCanvas = () => {
     setRealtimeList([]);
@@ -29,13 +29,13 @@ const Toolbar = (props) => {
         重做
       </Button> */}
 
-      <Button style={{ marginLeft: "10px" }} onClick={onPreview}>
+      <Button onClick={onPreview}>
         预览
       </Button>
-      <Button style={{ marginLeft: "10px" }} onClick={save}>
+      <Button onClick={save}>
         保存
       </Button>
-      <Button style={{ marginLeft: "10px" }} onClick={clearCanvas}>
+      <Button onClick={clearCanvas}>
         清空画布
       </Button>
       {/* <Button
@@ -58,13 +58,13 @@ const Toolbar = (props) => {
 
       {/* <div className={styles["canvas-config"]}>
         <span>画布大小</span>
-        <Input value={canvasStyleData.width} className={styles["num-input"]} />
+        <Input value={canvasStyleData.width} />
         <span>*</span>
-        <Input value={canvasStyleData.height} className={styles["num-input"]} />
+        <Input value={canvasStyleData.height} />
       </div>
       <div className={styles["canvas-config"]}>
         <span>画布比例</span>
-        <Input onInput={handleScaleChange} className={styles["num-input"]} /> %
+        <Input onInput={handleScaleChange} /> %
       </div> */}
     </div>
   );

@@ -17,6 +17,7 @@ const Shape = (props) => {
 
   // 鼠标移动
   const handleMouseDownOnShape = (e) => {
+    if(isPreview) return
     setIsClickComponent(true);
     e.stopPropagation();
     // 存储当前编辑的图纸
@@ -55,6 +56,7 @@ const Shape = (props) => {
 
   // 拖动缩放图纸的点
   const handleMouseDownOnPoint = (point, e) => {
+    if(isPreview) return
     e.stopPropagation();
     e.preventDefault();
 
