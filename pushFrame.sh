@@ -1,28 +1,34 @@
-### 使用 bash pushFrame.sh [提交日志] [是否拉代码并合并]
+#!/bin/bash
+
+# 接收messageA
+messageA=$1
+
+# 提交react-visual-drag-demo项目代码至Github
+echo "提交react-visual-drag-demo项目代码..."
 git add .
-git status
-sleep 1s
-git commit --no-verify -m "$1:$2"
-if [ $3 ];
-then
-  git fetch
-  sleep 2s
-  git merge origin/dev
-  exit
+git commit -m "$messageA"
+git push
+
+# 构建并重命名dist文件夹
+echo "构建并重命名dist文件夹..."
+npm run build
+mv dist react-visual-drag-demo
+
+# 将react-visual-drag-demo拷贝至WXL570CN.github.io项目
+echo "将react-visual-drag-demo拷贝至WXL570CN.github.io项目..."
+if [ -d "../WXL570CN.github.io/react-visual-drag-demo" ]; then
+    rm -rf ../WXL570CN.github.io/react-visual-drag-demo
 fi
+cp -R react-visual-drag-demo/ ../WXL570CN.github.io/react-visual-drag-demo/
 
-# feat：添加新特性
+# 提交WXL570CN.github.io项目代码至Github
+echo "提交WXL570CN.github.io项目代码..."
+cd ../WXL570CN.github.io
+git add .
+git commit -m "更新拖拽Demo"
+git push
 
-# fix：修复bug
-
-# docs：仅仅修改了文档
-
-# style：仅仅修改了空格、格式缩进、逗号等等，不改变代码逻辑
-
-# refactor：代码重构，没有添加新功能或者修复
-
-# bugtest：增加测试用例
-
-# chore：改变构建流程、或者增加依赖库、工具等
-
-# revert：回滚到上一个版本  
+# 删除react-visual-drag-demo项目中的react-visual-drag-demo
+echo "删除 react-visual-drag-demo 项目中的react-visual-drag-demo..."
+cd ../react-visual-drag-demo
+rm -rf react-visual-drag-demo
