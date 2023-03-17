@@ -130,41 +130,26 @@ export function calculateCenter(style, startStyle, offset, canvasStyle) {
  * @param {*} point：方向点
  * @param {*} style：组件样式
  */
-export const getDirectionPointStyle = (point, style) => {
-  const { width, height } = style;
-  const hasT = /t/.test(point);
-  const hasB = /b/.test(point);
-  const hasL = /l/.test(point);
-  const hasR = /r/.test(point);
-  let newLeft = 0;
-  let newTop = 0;
+export const getDirectionPointStyle = (point, { width, height }) => {
+  const halfWidth = width / 2;
+  const halfHeight = height / 2;
 
-  // 四个角的点
-  if (point.length === 2) {
-    newLeft = hasL ? 0 : width;
-    newTop = hasT ? 0 : height;
-  } else {
-    // 上下两点的点，宽度居中
-    if (hasT || hasB) {
-      newLeft = width / 2;
-      newTop = hasT ? 0 : height;
-    }
+  const position = {
+    lt: [0, 0],
+    rt: [width, 0],
+    lb: [0, height],
+    rb: [width, height],
+    t: [halfWidth, 0],
+    b: [halfWidth, height],
+    l: [0, Math.floor(halfHeight)],
+    r: [width, Math.floor(halfHeight)],
+  }[point];
 
-    // 左右两边的点，高度居中
-    if (hasL || hasR) {
-      newLeft = hasL ? 0 : width;
-      newTop = Math.floor(height / 2);
-    }
-  }
-
-  const _style = {
-    marginLeft: '-4px',
-    marginTop: '-4px',
-    left: `${newLeft}px`,
-    top: `${newTop}px`,
+  return {
+    marginLeft: "-4px",
+    marginTop: "-4px",
+    left: `${position[0]}px`,
+    top: `${position[1]}px`,
     cursor: CURSORS[point],
   };
-
-  return _style;
 };
-
