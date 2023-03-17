@@ -80,6 +80,14 @@ export default function HomePage(props) {
         {/* 右侧属性列表 */}
         <section className={styles['right']}></section>
       </main>
+      {isPreview && (
+        <Preview
+          visible={isPreview}
+          onCancel={() => {
+            setIsPreview(false);
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -1,11 +1,18 @@
 import Button from "../components/DragComList/Button";
+import Chart from "../components/DragComList/Chart";
+import Circle from "../components/DragComList/Circle";
+import Line from "../components/DragComList/Line";
 import Picture from "../components/DragComList/Picture";
+import Rec from "../components/DragComList/Rec";
+import Star from "../components/DragComList/Star";
+import Table from "../components/DragComList/Table";
 import Text from "../components/DragComList/Text";
+import Tri from "../components/DragComList/Tri";
 
 // 画布样式
 export const CANVAS_STYLE = {
-  width: 1008,
-  height: 648,
+  width: 1000,
+  height: 645,
   color: "#000",
   background: "#fff",
 };
@@ -49,7 +56,7 @@ export const DRAG_COM_TYPE = {
   CHART: 10,
 };
 
-// 可供拖拽的组件
+// 可供拖拽的组件（配置）
 export const DRAG_COM_LIST = [
   // 文字
   {
@@ -63,7 +70,6 @@ export const DRAG_COM_LIST = [
       fontWeight: 400,
       letterSpacing: 0,
     },
-    component: (props) => <Text {...props} />,
   },
   // 按钮
   {
@@ -85,7 +91,6 @@ export const DRAG_COM_LIST = [
       color: "",
       backgroundColor: "",
     },
-    component: (props) => <Button {...props} />,
   },
   // 图片
   {
@@ -98,13 +103,20 @@ export const DRAG_COM_LIST = [
       height: 200,
       borderRadius: "",
     },
-    component: (props) => <Picture {...props} />,
   },
   // 表格
   {
     type: DRAG_COM_TYPE.TABLE,
     icon: "icon-drag-table",
     label: "表格",
+    propValue: {
+      data: [
+        ["表头1", "表头2", "表头3"],
+        ["内容1", "内容2", "内容3"],
+      ],
+      stripe: true,
+      thBold: true,
+    },
     style: {
       width: 600,
       height: 200,
@@ -155,8 +167,8 @@ export const DRAG_COM_LIST = [
       },
     },
     style: {
-      width: 800,
-      height: 500,
+      width: 760,
+      height: 300,
       borderRadius: "",
     },
   },
@@ -243,13 +255,22 @@ export const DRAG_COM_LIST = [
       letterSpacing: 0,
       textAlign: "center",
       color: "",
-      borderColor: "#000",
-      borderWidth: 1,
-      backgroundColor: "",
-      borderStyle: "solid",
-      borderRadius: "",
       verticalAlign: "middle",
     },
   },
   // ...
 ];
+
+// 组件列表
+export const COM_LIST = {
+  [DRAG_COM_TYPE.TEXT]: Text,
+  [DRAG_COM_TYPE.BUTTON]: Button,
+  [DRAG_COM_TYPE.IMG]: Picture,
+  [DRAG_COM_TYPE.TABLE]: Table,
+  [DRAG_COM_TYPE.LINE]: Line,
+  [DRAG_COM_TYPE.TRI]: Tri,
+  [DRAG_COM_TYPE.REC]: Rec,
+  [DRAG_COM_TYPE.STAR]: Star,
+  [DRAG_COM_TYPE.CIRCLE]: Circle,
+  [DRAG_COM_TYPE.CHART]: Chart,
+};

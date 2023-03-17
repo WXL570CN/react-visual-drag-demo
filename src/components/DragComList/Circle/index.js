@@ -1,5 +1,7 @@
-const Tri = (props) => {
-  return <div>1</div>;
+import styles from './index.less';
+
+const Circle = (props) => {
+  return <div className={styles["circle"]}></div>;
 };
 
-export default Tri;
+export default Circle;

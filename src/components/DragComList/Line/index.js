@@ -1,5 +1,7 @@
-const Tri = (props) => {
-  return <div>1</div>;
+import styles from './index.less';
+
+const Line = (props) => {
+  return <div className={styles['line-shape']}></div>
 };
 
-export default Tri;
+export default Line;

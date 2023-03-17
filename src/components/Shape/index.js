@@ -70,6 +70,7 @@ const Shape = (props) => {
 
   // 拖动缩放图纸的点
   const handleMouseDownOnPoint = (point, e) => {
+    if(isPreview) return
     e.stopPropagation();
     e.preventDefault();
 
