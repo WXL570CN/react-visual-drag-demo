@@ -1,23 +1,21 @@
-import DragComList from '../components/DragComList';
-import Editor from '../components/Editor';
-import RealtimeComList from '../components/RealtimeComList';
-import Toolbar from '../components/ToolBar';
-import styles from './index.less';
-import { useModel, useDispatch, useSelector } from 'umi';
-import { useRef } from 'react';
-import { DRAG_COM_LIST } from '../utils/contant';
-import generateID, { deepCopy } from '../utils/utils';
+import DragComList from "../components/DragComList";
+import Editor from "../components/Editor";
+import Preview from "../components/Preview";
+import RealtimeComList from "../components/RealtimeComList";
+import Toolbar from "../components/ToolBar";
+import styles from "./index.less";
+import { connect } from "umi";
+import { useRef, useState } from "react";
+import { DRAG_COM_LIST } from "../utils/contant";
+import generateID from "../utils/utils";
+import { cloneDeep } from "lodash";
 
-export default function HomePage(props) {
-  const dispatch = useDispatch(); // 获取dispatch
-  const { isClickComponent } = useSelector((s) => s.drag); // 获取所有model的状态
-  // const {
-  //   addRealtimeList,
-  //   isClickComponent,
-  //   crearCurComponent,
-  //   setIsClickComponent,
-  // } = useModel('home');
+const HomePage = (props) => {
+  const { dispatch, isClickComponent } = props; // 获取所有model的状态
+
+  const [isPreview, setIsPreview] = useState(false);
   const editorRef = useRef(null);
+
   // 处理鼠标拖拽移入
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -26,16 +24,16 @@ export default function HomePage(props) {
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const comType = JSON.parse(e.dataTransfer.getData('comType'));
+    const comType = JSON.parse(e.dataTransfer.getData("comType"));
     const rectInfo = editorRef.current.editorClient;
     if (comType) {
       const component =
-        deepCopy(DRAG_COM_LIST.find((item) => item.type === comType)) || {};
+        cloneDeep(DRAG_COM_LIST.find((item) => item.type === comType)) || {};
       component.id = generateID();
       component.style.top = e.clientY - rectInfo.y;
       component.style.left = e.clientX - rectInfo.x;
       dispatch({
-        type: 'drag/addRealtimeList',
+        type: "drag/addRealtimeList",
         payload: component,
       });
     }
@@ -44,7 +42,7 @@ export default function HomePage(props) {
   const handleMouseDown = (e) => {
     e.stopPropagation();
     dispatch({
-      type: 'drag/setIsClickComponent',
+      type: "drag/setIsClickComponent",
       payload: false,
     });
   };
@@ -52,23 +50,27 @@ export default function HomePage(props) {
   const handleMouseUp = () => {
     if (!isClickComponent) {
       dispatch({
-        type: 'drag/setCurComponent',
+        type: "drag/setCurComponent",
       });
     }
   };
   return (
-    <div className={styles['home']}>
-      <Toolbar />
+    <div className={styles["home"]}>
+      <Toolbar
+        onPreview={() => {
+          setIsPreview(true);
+        }}
+      />
       <main className="flex_start_center">
         {/* 左侧组件列表 */}
-        <section className={styles['left']}>
+        <section className={styles["left"]}>
           <DragComList />
           <RealtimeComList />
         </section>
         {/* 中间画布 */}
-        <section className={styles['center']}>
+        <section className={styles["center"]}>
           <div
-            className={styles['content']}
+            className={styles["content"]}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
             onMouseDown={handleMouseDown}
@@ -78,7 +80,7 @@ export default function HomePage(props) {
           </div>
         </section>
         {/* 右侧属性列表 */}
-        <section className={styles['right']}></section>
+        <section className={styles["right"]}></section>
       </main>
       {isPreview && (
         <Preview
@@ -90,4 +92,6 @@ export default function HomePage(props) {
       )}
     </div>
   );
-}
+};
+
+export default connect((state) => ({ ...state.drag }))(HomePage);

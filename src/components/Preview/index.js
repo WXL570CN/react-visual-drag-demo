@@ -1,14 +1,13 @@
 import { Modal } from "antd";
 import { useEffect, useRef, useState } from "react";
-import { useModel } from "umi";
+import { connect } from "umi";
 import { CANVAS_STYLE, COM_LIST } from "../../utils/contant";
 import { getScale } from "../../utils/utils";
 import Shape from "../Shape";
 import styles from "./index.less";
 
 const Preview = (props) => {
-  const { visible } = props;
-  const { realtimeList } = useModel("home");
+  const { visible, realtimeList } = props;
   const previewRef = useRef(null);
   const [scale, setScale] = useState(0);
 
@@ -65,4 +64,4 @@ const Preview = (props) => {
   );
 };
 
-export default Preview;
+export default connect((state) => ({ ...state.drag }))(Preview);

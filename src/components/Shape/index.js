@@ -1,36 +1,33 @@
-import styles from "./index.less";
-import { useModel, useDispatch, useSelector } from "umi";
+import { connect } from "umi";
 import calculateComponentPositonAndSize, {
   calculateCenter,
   getDirectionPointStyle,
 } from "../../utils/calculateComponentPositonAndSize";
 import { CANVAS_STYLE, DIRECTION_POINTS } from "../../utils/contant";
+import styles from "./index.less";
 
 const Shape = (props) => {
-  const { style, element, children, editorClient } = props;
-  // const {
-  //   curComponent,
-  //   setCurComonent,
-  //   setIsClickComponent,
-  //   updateCurComponent,
-  // } = useModel("home");
-  const dispatch = useDispatch(); // 获取dispatch
-  const { curComponent, realtimeList } = useSelector((s) => s.drag); // 获取所有model的状态
-
+  const {
+    dispatch,
+    style,
+    element,
+    children,
+    editorClient,
+    isPreview,
+    curComponent,
+  } = props;
   // 鼠标移动
   const handleMouseDownOnShape = (e) => {
-    // setIsClickComponent(true);
     dispatch({
-      type: 'drag/setIsClickComponent',
-      payload: true
-    })
+      type: "drag/setIsClickComponent",
+      payload: true,
+    });
     e.stopPropagation();
     // 存储当前编辑的图纸
-    // setCurComonent(element);
     dispatch({
-      type: 'drag/setCurComonent',
-      payload: element
-    })
+      type: "drag/setCurComponent",
+      payload: element,
+    });
 
     const _style = { ...style };
     // 鼠标按下时的位置
@@ -53,10 +50,9 @@ const Shape = (props) => {
       // 修改当前组件样式
       // updateCurComponent(_style, element);
       dispatch({
-        type: 'drag/updateCurComponent',
+        type: "drag/updateCurComponent",
         payload: _style,
-        element
-      })
+      });
     };
 
     const up = () => {
@@ -70,7 +66,7 @@ const Shape = (props) => {
 
   // 拖动缩放图纸的点
   const handleMouseDownOnPoint = (point, e) => {
-    if(isPreview) return
+    if (isPreview) return;
     e.stopPropagation();
     e.preventDefault();
 
@@ -84,30 +80,24 @@ const Shape = (props) => {
         y: moveEvent.clientY - Math.round(editorClient.top),
       };
 
-      calculateComponentPositonAndSize(
-        point,
-        _style,
-        curPositon,
-        CANVAS_STYLE
-      );
-      // updateCurComponent(_style, element)
+      calculateComponentPositonAndSize(point, _style, curPositon, CANVAS_STYLE);
       dispatch({
-        type: 'drag/updateCurComponent',
+        type: "drag/updateCurComponent",
         payload: _style,
-        element
-      })
+        element,
+      });
     };
 
     const up = () => {
-      document.removeEventListener('mousemove', move);
-      document.removeEventListener('mouseup', up);
+      document.removeEventListener("mousemove", move);
+      document.removeEventListener("mouseup", up);
     };
 
-    document.addEventListener('mousemove', move);
-    document.addEventListener('mouseup', up);
+    document.addEventListener("mousemove", move);
+    document.addEventListener("mouseup", up);
   };
 
-  const active = curComponent?.id === element.id;
+  const active = !isPreview && curComponent?.id === element.id;
   return (
     <div
       className={`${styles["shape"]} ${active ? styles["active"] : ""}`}
@@ -130,4 +120,4 @@ const Shape = (props) => {
   );
 };
 
-export default Shape;
+export default connect((state) => ({ ...state.drag }))(Shape);

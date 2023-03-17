@@ -13,5 +13,6 @@ export default defineConfig({
   ],
   initialState: {},
   model: {},
+  dva: {},
   publicPath: '/react-visual-drag-demo/',
 });

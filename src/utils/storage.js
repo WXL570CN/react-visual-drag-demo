@@ -1,4 +1,4 @@
-import { isObject } from "./utils";
+import { isObject } from "lodash";
 
 const storage = {
   //设置缓存

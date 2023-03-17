@@ -1,11 +1,10 @@
-import { Button, Input, message } from "antd";
-import { useModel } from "umi";
+import { Button, message } from "antd";
+import { connect } from "umi";
 import storage from "../../utils/storage";
 import styles from "./index.less";
 
 const Toolbar = (props) => {
-  const { canvasStyleData = {}, onPreview } = props;
-  const { setRealtimeList, realtimeList } = useModel("home");
+  const { dispatch, onPreview, realtimeList } = props;
   const handleAceEditorChange = () => {};
   const undo = () => {};
   const redo = () => {};
@@ -14,7 +13,10 @@ const Toolbar = (props) => {
     message.success("保存成功！");
   };
   const clearCanvas = () => {
-    setRealtimeList([]);
+    dispatch({
+      type: 'drag/setRealtimeList',
+      payload: []
+    })([]);
   };
   const lock = () => {};
   const unlock = () => {};
@@ -29,15 +31,9 @@ const Toolbar = (props) => {
         重做
       </Button> */}
 
-      <Button onClick={onPreview}>
-        预览
-      </Button>
-      <Button onClick={save}>
-        保存
-      </Button>
-      <Button onClick={clearCanvas}>
-        清空画布
-      </Button>
+      <Button onClick={onPreview}>预览</Button>
+      <Button onClick={save}>保存</Button>
+      <Button onClick={clearCanvas}>清空画布</Button>
       {/* <Button
         style={{ marginLeft: "10px" }}
         disabled={!curComponent || curComponent.isLock}
@@ -70,4 +66,4 @@ const Toolbar = (props) => {
   );
 };
 
-export default Toolbar;
+export default connect((state) => ({ ...state.drag }))(Toolbar);

@@ -1,4 +1,5 @@
-import { deepCopy, swap } from '../utils/utils';
+import { cloneDeep } from 'lodash';
+import { swap } from '../utils/utils';
 
 export default {
   namespace: 'drag',
@@ -17,9 +18,11 @@ export default {
     setIsClickComponent(state, { payload: isClickComponent }) {
       return { ...state, isClickComponent };
     },
-    addRealtimeList(state, { payload }) {
-      state.realtimeList.push(payload);
-      return state;
+    addRealtimeList(state, { payload: curComponent  }) {
+      return {
+        ...state,
+        realtimeList: [...state.realtimeList, curComponent]
+      }
     },
     moveUpComponent(state, { payload: index }) {
       if (index === 0) {
@@ -47,15 +50,15 @@ export default {
         realtimeList: state.realtimeList.filter((item) => item.id !== id),
       };
     },
-    updateCurComponent(state, { payload, element }) {
+    updateCurComponent(state, { payload }) {
       const { top, left, width, height, rotate } = payload;
-      const curComponent = deepCopy(element);
+      const curComponent = cloneDeep(state.curComponent);
+      const realtimeList = cloneDeep(state.realtimeList);
       if (top) curComponent.style.top = Math.round(top);
       if (left) curComponent.style.left = Math.round(left);
       if (width) curComponent.style.width = Math.round(width);
       if (height) curComponent.style.height = Math.round(height);
       if (rotate) curComponent.style.rotate = Math.round(rotate);
-      const realtimeList = deepCopy(state.realtimeList);
       const _index = realtimeList.findIndex(
         (item) => item.id === curComponent.id,
       );
