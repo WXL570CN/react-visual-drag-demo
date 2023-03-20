@@ -12,20 +12,24 @@ git commit -m "$messageA"
 # 设置git push尝试的次数
 
 # 提交代码到远程分支
-function git_push() {
-git push
-if [[ $? -ne 0 ]]; then 
-    echo "git push failed, try again..." git_push fi
-}
+attempts=0
 
-# 执行git push
-echo "Start git push..." for ((i=1;i<=TRY_TIMES;i++)); do git_push
+while true; do
+  if [[ $attempts -gt 2 ]]; then
+    echo "Push failed after $attempts attempts. Aborting."
+    exit 1
+  fi
 
-if [[ $? -eq 0 ]]; then 
-    echo "git push success!" exit 0 fi done
+  git push
 
-# git push尝试次数超过设定值，中断脚本执行
-echo "git push failed after ${TRY_TIMES} times, exit." exit 1
+  if [[ $? -eq 0 ]]; then
+    echo "Push succeeded."
+    break
+  else
+    echo "Push failed. Retrying..."
+    attempts=$((attempts+1))
+  fi
+done
 
 # 构建并重命名dist文件夹
 echo "构建并重命名dist文件夹..."
