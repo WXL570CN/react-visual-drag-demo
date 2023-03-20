@@ -157,7 +157,7 @@ export const DRAG_COM_LIST = [
           name: "销量",
           data: [23, 61, 35, 77, 35],
           itemStyle: {
-            barBorderRadius: 5,
+            borderRadius: 5,
             borderWidth: 1,
             borderType: "solid",
             borderColor: "#73c0de",

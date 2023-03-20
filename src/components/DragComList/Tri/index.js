@@ -34,7 +34,7 @@ const Tri = (props) => {
           points={points}
           stroke={borderColor}
           fill={backgroundColor}
-          stroke-width="1"
+          strokeWidth="1"
         />
       </svg>
     </div>

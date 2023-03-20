@@ -13,6 +13,7 @@ import { cloneDeep } from "lodash";
 const HomePage = (props) => {
   const { dispatch, isClickComponent } = props; // 获取所有model的状态
 
+  const [isScreenshot, setIsScreenshot] = useState(false)
   const [isPreview, setIsPreview] = useState(false);
   const editorRef = useRef(null);
 
@@ -57,7 +58,8 @@ const HomePage = (props) => {
   return (
     <div className={styles["home"]}>
       <Toolbar
-        onPreview={() => {
+        onPreview={(isScreenshot) => {
+          setIsScreenshot(isScreenshot)
           setIsPreview(true);
         }}
       />
@@ -84,9 +86,11 @@ const HomePage = (props) => {
       </main>
       {isPreview && (
         <Preview
-          visible={isPreview}
+          open={isPreview}
+          isScreenshot={isScreenshot}
           onCancel={() => {
             setIsPreview(false);
+            setIsScreenshot(false)
           }}
         />
       )}

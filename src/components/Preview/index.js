@@ -1,20 +1,39 @@
-import { Modal } from "antd";
+import { Button, Modal } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { connect } from "umi";
 import { CANVAS_STYLE, COM_LIST } from "../../utils/contant";
 import { getScale } from "../../utils/utils";
+import { toPng } from "html-to-image";
 import Shape from "../Shape";
 import styles from "./index.less";
 
 const Preview = (props) => {
-  const { visible, realtimeList } = props;
+  const { open, isScreenshot, realtimeList } = props;
   const previewRef = useRef(null);
   const [scale, setScale] = useState(0);
 
   useEffect(() => {
-    if (!visible) return;
+    if (!open) return;
     setScale(getScaleHandle());
-  }, [visible]);
+  }, [open]);
+
+  const htmlToImage = () => {
+    console.log("==");
+    toPng(previewRef.current)
+      .then((dataUrl) => {
+        console.log("『dataUrl』", dataUrl);
+        const a = document.createElement("a");
+        a.setAttribute("download", "screenshot");
+        a.href = dataUrl;
+        a.click();
+      })
+      .catch((error) => {
+        console.error("oops, something went wrong!", error);
+      })
+      .finally(() => {
+        props.onCancel();
+      });
+  };
 
   const getScaleHandle = () => {
     const { clientHeight, clientWidth } = previewRef.current || {};
@@ -53,7 +72,7 @@ const Preview = (props) => {
       title="预览"
       {...props}
       width={800}
-      footer={null}
+      footer={isScreenshot ? <Button onClick={htmlToImage}>截图</Button> : null}
       forceRender
       className={styles["preview-modal"]}
     >

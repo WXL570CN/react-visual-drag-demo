@@ -27,7 +27,7 @@ const Upload = (props) => {
     reader.readAsDataURL(file);
   };
   return (
-    <label for="input" className={styles["insert"]}>
+    <label htmlFor="input" className={styles["insert"]}>
       插入图片
       <input id="input" type="file" hidden onChange={onChange} />
     </label>

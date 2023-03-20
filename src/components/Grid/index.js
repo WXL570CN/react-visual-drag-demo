@@ -21,7 +21,7 @@ const Grid = (props) => {
                     d="M 7.236328125 0 L 0 0 0 7.236328125" 
                     fill="none" 
                     stroke="rgba(207, 207, 207, 0.3)" 
-                    stroke-width="1"
+                    strokeWidth="1"
                 >
                 </path>
             </pattern>
@@ -36,7 +36,7 @@ const Grid = (props) => {
                     d="M 36.181640625 0 L 0 0 0 36.181640625" 
                     fill="none" 
                     stroke="rgba(186, 186, 186, 0.5)" 
-                    stroke-width="1"
+                    strokeWidth="1"
                 >
                 </path>
             </pattern>

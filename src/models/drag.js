@@ -1,14 +1,24 @@
-import { cloneDeep } from 'lodash';
-import { CANVAS_STYLE } from '../utils/contant';
-import { swap } from '../utils/utils';
+import { cloneDeep } from "lodash";
+import { CANVAS_STYLE } from "../utils/contant";
+import storage from "../utils/storage";
+import { swap } from "../utils/utils";
 
 export default {
-  namespace: 'drag',
+  namespace: "drag",
   state: {
     canvasStyle: CANVAS_STYLE,
     curComponent: null,
     realtimeList: [],
     isClickComponent: false,
+  },
+  subscriptions: {
+    setup({ dispatch }) {
+      const dragData = storage.get("drag_data") || [];
+      dispatch({
+        type: "setRealtimeList",
+        payload: dragData,
+      });
+    },
   },
   reducers: {
     save(state, { payload }) {
@@ -23,15 +33,15 @@ export default {
     setIsClickComponent(state, { payload: isClickComponent }) {
       return { ...state, isClickComponent };
     },
-    addRealtimeList(state, { payload: curComponent  }) {
+    addRealtimeList(state, { payload: curComponent }) {
       return {
         ...state,
-        realtimeList: [...state.realtimeList, curComponent]
-      }
+        realtimeList: [...state.realtimeList, curComponent],
+      };
     },
     moveUpComponent(state, { payload: index }) {
       if (index === 0) {
-        message.warn('到顶了！');
+        message.warn("到顶了！");
         return;
       }
       return {
@@ -41,7 +51,7 @@ export default {
     },
     moveDownComponent(state, { payload: index }) {
       if (index === state.realtimeList.length - 1) {
-        message.warn('到底了！');
+        message.warn("到底了！");
         return;
       }
       return {
@@ -65,7 +75,7 @@ export default {
       if (height) curComponent.style.height = Math.round(height);
       if (rotate) curComponent.style.rotate = Math.round(rotate);
       const _index = realtimeList.findIndex(
-        (item) => item.id === curComponent.id,
+        (item) => item.id === curComponent.id
       );
       realtimeList.splice(_index, 1, curComponent);
       return { ...state, curComponent, realtimeList };

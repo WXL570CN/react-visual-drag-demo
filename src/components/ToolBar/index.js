@@ -3,7 +3,10 @@ import { connect } from "umi";
 import changeComponentsSizeWithScale from "../../utils/changeComponentsSizeWithScale";
 import { DRAG_COM_LIST, DRAG_COM_TYPE } from "../../utils/contant";
 import storage from "../../utils/storage";
-import { getImgWideHighAfterAdaptive, getOptionsMatch } from "../../utils/utils";
+import {
+  getImgWideHighAfterAdaptive,
+  getOptionsMatch,
+} from "../../utils/utils";
 import ImgUpload from "../ImgUpload";
 import styles from "./index.less";
 
@@ -41,9 +44,9 @@ const Toolbar = (props) => {
       canvasStyle,
     });
     dispatch({
-      type: 'drag/setCurComponent',
+      type: "drag/setCurComponent",
       payload: component,
-    })
+    });
     dispatch({
       type: "drag/addRealtimeList",
       payload: component,
@@ -59,7 +62,13 @@ const Toolbar = (props) => {
         重做
       </Button> */}
       <ImgUpload onChange={handleFileChange} />
-      <Button onClick={onPreview}>预览</Button>
+      <Button
+        onClick={() => {
+          onPreview();
+        }}
+      >
+        预览
+      </Button>
       <Button onClick={save}>保存</Button>
       <Button onClick={clearCanvas}>清空画布</Button>
       {/* <Button
@@ -76,9 +85,13 @@ const Toolbar = (props) => {
       >
         解锁
       </Button> */}
-      {/* <Button style={{ marginLeft: "10px" }} onClick="preview(true)">
+      <Button
+        onClick={() => {
+          onPreview(true);
+        }}
+      >
         截图
-      </Button> */}
+      </Button>
 
       {/* <div className={styles["canvas-config"]}>
         <span>画布大小</span>

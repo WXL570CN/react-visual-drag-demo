@@ -15,6 +15,7 @@
     "lodash": "^4.17.21",
     "nanoid": "^4.0.1",
     "umi": "^4.0.57",
+    "html-to-image": "^1.9.0",
     "mathjs": "^10.5.3"
   },
   "devDependencies": {
