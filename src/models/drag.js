@@ -1,3 +1,4 @@
+import { message } from "antd";
 import { cloneDeep } from "lodash";
 import { CANVAS_STYLE } from "../utils/contant";
 import storage from "../utils/storage";
@@ -36,7 +37,7 @@ export default {
     addRealtimeList(state, { payload: curComponent }) {
       return {
         ...state,
-        realtimeList: [...state.realtimeList, curComponent],
+        realtimeList: [curComponent, ...state.realtimeList],
       };
     },
     moveUpComponent(state, { payload: index }) {

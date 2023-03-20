@@ -36,7 +36,7 @@ const Editor = React.forwardRef((props, ref) => {
         return (
           <Shape
             key={item.id}
-            style={item.style}
+            style={{ ...item.style, zIndex: realtimeList.length - index }}
             element={item}
             editorClient={getEditorClient()}
           >

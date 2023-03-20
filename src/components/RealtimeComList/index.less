@@ -8,6 +8,13 @@
     font-size: 12px;
     padding: 0 10px;
     user-select: none;
+    &.active {
+      background: #ecf5ff;
+      .name,
+      > i {
+        color: #409eff;
+      }
+    }
     &:active {
       cursor: grabbing;
     }
@@ -31,9 +38,5 @@
         cursor: pointer;
       }
     }
-  }
-  .actived {
-    background: #ecf5ff;
-    color: #409eff;
   }
 }
