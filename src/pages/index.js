@@ -94,4 +94,4 @@ const HomePage = (props) => {
   );
 };
 
-export default connect((state) => ({ ...state.drag }))(HomePage);
+export default connect((state) => state.drag)(HomePage);

@@ -64,4 +64,4 @@ const Preview = (props) => {
   );
 };
 
-export default connect((state) => ({ ...state.drag }))(Preview);
+export default connect((state) => state.drag)(Preview);

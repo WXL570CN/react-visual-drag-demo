@@ -120,4 +120,4 @@ const Shape = (props) => {
   );
 };
 
-export default connect((state) => ({ ...state.drag }))(Shape);
+export default connect((state) => state.drag)(Shape);

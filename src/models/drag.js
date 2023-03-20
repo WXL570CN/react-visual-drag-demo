@@ -1,14 +1,19 @@
 import { cloneDeep } from 'lodash';
+import { CANVAS_STYLE } from '../utils/contant';
 import { swap } from '../utils/utils';
 
 export default {
   namespace: 'drag',
   state: {
+    canvasStyle: CANVAS_STYLE,
     curComponent: null,
     realtimeList: [],
     isClickComponent: false,
   },
   reducers: {
+    save(state, { payload }) {
+      return { ...state, ...payload };
+    },
     setCurComponent(state, { payload: curComponent }) {
       return { ...state, curComponent };
     },

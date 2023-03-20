@@ -14,7 +14,8 @@
     "echarts-for-react": "^3.0.2",
     "lodash": "^4.17.21",
     "nanoid": "^4.0.1",
-    "umi": "^4.0.57"
+    "umi": "^4.0.57",
+    "mathjs": "^10.5.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

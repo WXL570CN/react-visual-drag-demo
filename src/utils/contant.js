@@ -15,8 +15,9 @@ export const CANVAS_STYLE = {
   height: 645,
   color: "#000",
   background: "#fff",
+  scale: 100,
+  opacity: 1,
 };
-
 // 代表八个方向的点
 export const DIRECTION_POINTS = ["lt", "t", "rt", "r", "rb", "b", "lb", "l"]; // 八个方向
 
