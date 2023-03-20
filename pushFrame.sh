@@ -2,34 +2,39 @@
 
 # 接收messageA
 messageA=$1
-TRY_TIMES=3
+
+# git push函数
+function git_push_retry() {
+    attempts=0
+
+    while true; do
+        if [[ $attempts -gt 2 ]]; then
+            echo "Push failed after $attempts attempts. Aborting."
+            exit 1
+        fi
+
+        git push
+
+        if [[ $? -eq 0 ]]; then
+            echo "Push succeeded."
+            break
+        else
+            echo "Push failed. Retrying..."
+            attempts=$((attempts+1))
+        fi
+    done
+}
+
 
 # 提交react-visual-drag-demo项目代码至Github
 echo "提交react-visual-drag-demo项目代码..."
 git add .
 git commit -m "$messageA"
-# git push
-# 设置git push尝试的次数
 
 # 提交代码到远程分支
-attempts=0
+# 调用函数
+git_push_retry
 
-while true; do
-  if [[ $attempts -gt 2 ]]; then
-    echo "Push failed after $attempts attempts. Aborting."
-    exit 1
-  fi
-
-  git push
-
-  if [[ $? -eq 0 ]]; then
-    echo "Push succeeded."
-    break
-  else
-    echo "Push failed. Retrying..."
-    attempts=$((attempts+1))
-  fi
-done
 
 # 构建并重命名dist文件夹
 echo "构建并重命名dist文件夹..."
@@ -48,7 +53,9 @@ echo "提交WXL570CN.github.io项目代码..."
 cd ../WXL570CN.github.io
 git add .
 git commit -m "更新拖拽Demo"
-git push
+# 提交代码到远程分支
+# 调用函数
+git_push_retry
 
 # 删除react-visual-drag-demo项目中的react-visual-drag-demo
 echo "删除 react-visual-drag-demo 项目中的react-visual-drag-demo..."
