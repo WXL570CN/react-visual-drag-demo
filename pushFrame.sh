@@ -2,12 +2,28 @@
 
 # 接收messageA
 messageA=$1
+TRY_TIMES=3
 
 # 提交react-visual-drag-demo项目代码至Github
 echo "提交react-visual-drag-demo项目代码..."
 git add .
 git commit -m "$messageA"
+# git push
+# 设置git push尝试的次数
+
+# 提交代码到远程分支
+function git_push() {
 git push
+if [[ $? -ne 0 ]]; then echo "git push failed, try again..." git_push fi
+}
+
+# 执行git push
+echo "Start git push..." for ((i=1;i<=TRY_TIMES;i++)); do git_push
+
+if [[ $? -eq 0 ]]; then echo "git push success!" exit 0 fi done
+
+# git push尝试次数超过设定值，中断脚本执行
+echo "git push failed after ${TRY_TIMES} times, exit." exit 1
 
 # 构建并重命名dist文件夹
 echo "构建并重命名dist文件夹..."
