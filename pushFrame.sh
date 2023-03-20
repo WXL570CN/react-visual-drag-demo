@@ -14,13 +14,15 @@ git commit -m "$messageA"
 # 提交代码到远程分支
 function git_push() {
 git push
-if [[ $? -ne 0 ]]; then echo "git push failed, try again..." git_push fi
+if [[ $? -ne 0 ]]; then 
+    echo "git push failed, try again..." git_push fi
 }
 
 # 执行git push
 echo "Start git push..." for ((i=1;i<=TRY_TIMES;i++)); do git_push
 
-if [[ $? -eq 0 ]]; then echo "git push success!" exit 0 fi done
+if [[ $? -eq 0 ]]; then 
+    echo "git push success!" exit 0 fi done
 
 # git push尝试次数超过设定值，中断脚本执行
 echo "git push failed after ${TRY_TIMES} times, exit." exit 1
