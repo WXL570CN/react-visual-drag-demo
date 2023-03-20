@@ -81,6 +81,16 @@ export default {
       realtimeList.splice(_index, 1, curComponent);
       return { ...state, curComponent, realtimeList };
     },
+    updateTextComponent(state, { payload }) {
+      const curComponent = cloneDeep(state.curComponent);
+      const realtimeList = cloneDeep(state.realtimeList);
+      const _index = realtimeList.findIndex(
+        (item) => item.id === curComponent.id
+      );
+      curComponent.propValue = payload
+      realtimeList.splice(_index, 1, curComponent);
+      return { ...state, curComponent, realtimeList };
+    }
   },
   effects: {},
 };
