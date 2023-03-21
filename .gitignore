@@ -5,5 +5,5 @@
 /src/.umi
 /src/.umi-production
 /src/.umi-test
-/dist
+/react-visual-drag-demo
 .swc

@@ -15,4 +15,5 @@ export default defineConfig({
   model: {},
   dva: {},
   publicPath: '/react-visual-drag-demo/',
+  outputPath: 'react-visual-drag-demo'
 });
